@@ -1,11 +1,3 @@
--- ============================================================
--- SoftPrim Technology SRL — Exercițiu tehnic stagiu
--- Setup bază de date MySQL
--- ============================================================
--- Instrucțiuni:
---   1. Creează baza de date:  CREATE DATABASE softprim_test;
---   2. Importă acest fișier:  mysql -u root -p softprim_test < setup.sql
--- ============================================================
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -16,9 +8,6 @@ DROP TABLE IF EXISTS categories;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
--- ============================================================
--- Tabel: categories
--- ============================================================
 CREATE TABLE categories (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
@@ -32,9 +21,7 @@ INSERT INTO categories (id, name, slug) VALUES
   (4, 'Tablouri electrice',      'tablouri-electrice'),
   (5, 'Conectori și accesorii',  'conectori-accesorii');
 
--- ============================================================
--- Tabel: products
--- ============================================================
+
 CREATE TABLE products (
   id INT PRIMARY KEY AUTO_INCREMENT,
   category_id INT NOT NULL,
@@ -76,9 +63,6 @@ INSERT INTO products (category_id, name, price, stock) VALUES
   (5, 'Cleme șir 2.5mmp gri (set 50 buc)',            32.00,  75),
   (5, 'Conector de derivație 6mmp izolat',             4.50,  500);
 
--- ============================================================
--- Tabel: orders
--- ============================================================
 CREATE TABLE orders (
   id INT PRIMARY KEY AUTO_INCREMENT,
   product_id INT NOT NULL,
@@ -89,8 +73,6 @@ CREATE TABLE orders (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ============================================================
--- Verificare rapidă
--- ============================================================
+
 -- SELECT COUNT(*) AS total_categories FROM categories;  -- 5
 -- SELECT COUNT(*) AS total_products FROM products;      -- 20
